@@ -12,7 +12,7 @@ module AngularRailsTemplates
 
     def prepare
       # we only want to process html assets inside those specified in configuration.inside_paths
-      @asset_should_be_processed = configuration.inside_paths.any? { |folder| file.match(folder.to_s) }
+      @asset_should_be_processed = configuration.inside_paths.any? { |folder| file.match(folder.to_s.gsub('-', '\-')) }
 
       if configuration.htmlcompressor and @asset_should_be_processed
         @data = compress data
